@@ -5,8 +5,7 @@ game.module(
     'game.assets',
     'game.objects',
     'game.boy',
-    'game.gift',
-    'game.house'
+    'game.gift'
 )
 .body(function() {
 
@@ -30,6 +29,8 @@ game.createScene('Main', {
 
         //this.rekiBack = new game.RekiBack(200, 600);
         // this.boy = new game.Boy(200, 600);
+
+
         this.rekiFront = new game.RekiFront(200, 600);
         this.boy = new game.Boy(200, 600);
 
@@ -41,6 +42,10 @@ game.createScene('Main', {
         }
 
         this.rekiBack = new game.RekiBack(200, 600);
+
+        
+
+
 
     },
 

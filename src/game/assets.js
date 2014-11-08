@@ -3,8 +3,6 @@ game.module(
 )
 .body(function() {
 
-    game.addAsset('boy.png');
-    game.addAsset('back.png');
     game.addAsset('images/road.png', 'road');
 
     game.addAsset('images/reki-back.png', 'reki-back');
