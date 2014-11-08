@@ -40,13 +40,6 @@ game.module(
                 this.body.position.x = this.startX;
             }
 
-            if (game.scene.boy.position.x > 700) {
-                this.body.velocity.y = 50;
-                this.body.velocity.x = -50;
-            } else {
-                this.body.velocity.y = 100;
-                this.body.velocity.x = -100;
-            }
 
         }
 

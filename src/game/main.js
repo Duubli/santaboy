@@ -26,7 +26,11 @@ game.createScene('Main', {
             y -= 115;
         }
 
+        //this.rekiBack = new game.RekiBack(200, 600);
+        // this.boy = new game.Boy(200, 600);
+        this.rekiFront = new game.RekiFront(200, 600);
         this.boy = new game.Boy(200, 600);
+        this.rekiBack = new game.RekiBack(200, 600);
 
     },
 
@@ -35,10 +39,14 @@ game.createScene('Main', {
 
         if (key === 'RIGHT') {
             this.boy.moveRight();
+            this.rekiFront.moveRight();
+            this.rekiBack.moveRight();
         }
 
         if (key === 'LEFT') {
             this.boy.moveLeft();
+            this.rekiFront.moveLeft();
+            this.rekiBack.moveLeft();
         }
 
     },
@@ -46,6 +54,8 @@ game.createScene('Main', {
     keyup: function (key) {
         if (key === 'RIGHT' || key === 'LEFT') {
             this.boy.stop();
+            this.rekiFront.stop();
+            this.rekiBack.stop();
         }
     }
 });
