@@ -8,6 +8,10 @@ game.module(
 
         init: function (x, y) {
 
+            this.used = false;
+            this.prepared = false;
+            this.zIndex = 3;
+
             var items = [
                     'gift-blue',
                     'gift-red',
@@ -27,6 +31,8 @@ game.module(
             game.scene.addObject(this);
             game.scene.world.addBody(this.body);
             game.scene.stage.addChild(this);
+
+            this.rotation = Math.random();
         },
 
         update: function () {
@@ -35,19 +41,40 @@ game.module(
         },
 
         moveRight: function () {
-            this.body.velocity.x = 300;
-            this.rotation = 0.05;
+            if (this.used === false) {
+                this.body.velocity.x = 300;
+            }
         },
 
         moveLeft: function () {
-            this.body.velocity.x = -300;
-            this.rotation = -0.05;
+            if (this.used === false) {
+                this.body.velocity.x = -300;
+            }
         },
 
         stop: function () {
-            this.body.velocity.x = 0;
-            this.body.velocity.y = 0;
+            if (this.used === false) {
+                this.body.velocity.x = 0;
+                this.body.velocity.y = 0;
+            }
+        },
+
+        prepare: function () {
+            this.prepared = true;
             this.rotation = 0;
+            this.zIndex = 1;
+            this.body.position.x = game.scene.boy.position.x + 65;
+            this.body.position.y = game.scene.boy.position.y - 48;
+
+        },
+
+        shoot: function () {
+            this.used = true;
+            this.prepared = false;
+            this.body.position.x -= 100;
+            this.body.velocity.x = -800;
+            this.body.velocity.y = -20;
+
         }
 
     });
