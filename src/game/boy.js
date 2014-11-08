@@ -3,10 +3,11 @@ game.module(
 )
 .body(function() {
 
-
     game.createClass('RekiBack', 'Sprite', {
 
         init: function (x, y) {
+
+            this.zIndex = 4;
 
             this._super('reki-back', x, y, {
                 anchor: { x: 0.5, y: 0.5 }
@@ -49,6 +50,9 @@ game.module(
     game.createClass('RekiFront', 'Sprite', {
 
         init: function (x, y) {
+
+            this.zIndex = 2;
+
             this._super('reki-front', x, y, {
                 anchor: { x: 0.5, y: 0.5 }
             });
@@ -92,6 +96,10 @@ game.module(
 
         init: function(x, y) {
 
+            this.zIndex = 3;
+            this.windup = false;
+            this.ready = true;
+
             this._super('santaboy-idle', x, y, {
                 anchor: {
                     x: 0.5,
@@ -130,6 +138,33 @@ game.module(
             this.body.velocity.x = 0;
             this.body.velocity.y = 0;
             this.rotation = 0;
+        },
+
+        toggleWindup: function () {
+
+            var self = this;
+
+            if (this.recovery) {
+                return;
+            }
+
+            if (this.windup === false) {
+
+                this.setTexture('santaboy-windup');
+                this.windup = true;
+
+            } else {
+
+                this.setTexture('santaboy-release');
+                this.recovery = true;
+
+                setTimeout(function() {
+                    self.setTexture('santaboy-idle');
+                    self.windup = false;
+                    self.recovery = false;
+                }, 250);
+            }
+
         }
 
 

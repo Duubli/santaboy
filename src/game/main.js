@@ -47,6 +47,7 @@ game.createScene('Main', {
 
     keydown: function (key) {
 
+        // Move right
         if (key === 'RIGHT') {
             this.boy.moveRight();
             this.rekiFront.moveRight();
@@ -57,6 +58,7 @@ game.createScene('Main', {
             }
         }
 
+        // Move left
         if (key === 'LEFT') {
             this.boy.moveLeft();
             this.rekiFront.moveLeft();
@@ -67,9 +69,23 @@ game.createScene('Main', {
             }
         }
 
+        // Windup!
+        if (key === 'SPACE') {
+            this.boy.toggleWindup();
+
+            for (var i = 0; i < this.gifts.length; i++) {
+                if (this.gifts[i].used === false) {
+                    this.gifts[i].prepare();
+                    this.sort();
+                    break;
+                }
+            }
+        }
+
     },
 
     keyup: function (key) {
+
         if (key === 'RIGHT' || key === 'LEFT') {
             this.boy.stop();
             this.rekiFront.stop();
@@ -78,9 +94,37 @@ game.createScene('Main', {
             for (var i = 0; i < this.gifts.length; i++) {
                 this.gifts[i].stop();
             }
-
         }
+
+        if (key === 'SPACE') {
+
+            if (this.boy.recovery) {
+                return;
+            }
+
+            for (var i = 0; i < this.gifts.length; i++) {
+                if (this.gifts[i].prepared === true) {
+                    this.gifts[i].shoot();
+                    this.boy.toggleWindup();
+                    break;
+                }
+            }
+        }
+    },
+
+    depthCompare: function (a, b) {
+        if (a.zIndex < b.zIndex) return -1;
+        if (a.zIndex > b.zIndex) return 1;
+        return 0;
+    },
+
+    sort: function() {
+        //All sprites have been added to game.scene.stage.
+        //In order to update the zIndex, you have to sort the following list
+        game.scene.stage.children.sort(this.depthCompare);
     }
+
+
 });
 
 });

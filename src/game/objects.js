@@ -9,6 +9,7 @@ game.module(
 
             this.startX = x;
             this.startY = y;
+            this.zIndex = 0;
 
             this._super('road', x, y);
 
