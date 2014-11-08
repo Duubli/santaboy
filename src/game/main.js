@@ -89,10 +89,6 @@ game.createScene('Main', {
 
     },
 
-    swipe: function (dir) {
-        alert(dir);
-    },
-
     keyup: function (key) {
 
         if (key === 'RIGHT' || key === 'LEFT') {
@@ -119,6 +115,36 @@ game.createScene('Main', {
                 }
             }
         }
+    },
+
+    swipe: function (dir) {
+
+        if (dir === 'right') {
+            this.boy.toggleWindup();
+
+            for (var i = 0; i < this.gifts.length; i++) {
+                if (this.gifts[i].used === false) {
+                    this.gifts[i].prepare();
+                    this.sort();
+                    break;
+                }
+            }
+        }
+
+        if (dir === 'left') {
+            if (this.boy.recovery) {
+                return;
+            }
+
+            for (var i = 0; i < this.gifts.length; i++) {
+                if (this.gifts[i].prepared === true) {
+                    this.gifts[i].shoot();
+                    this.boy.toggleWindup();
+                    break;
+                }
+            }
+        }
+        
     },
 
     depthCompare: function (a, b) {
