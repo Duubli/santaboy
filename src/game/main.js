@@ -9,6 +9,9 @@ game.module(
 
 game.createScene('Main', {
     init: function() {
+
+        this.world = new game.World(0, 0);
+
     }
 });
 
