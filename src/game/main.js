@@ -43,7 +43,7 @@ game.createScene('Main', {
 
         this.rekiBack = new game.RekiBack(200, 600);
 
-        
+
 
 
 
@@ -87,6 +87,10 @@ game.createScene('Main', {
             }
         }
 
+    },
+
+    swipe: function (dir) {
+        alert(dir);
     },
 
     keyup: function (key) {
