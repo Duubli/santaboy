@@ -103,7 +103,7 @@ game.module(
                 position: { x: x, y: y },
             });
 
-            this.body.addShape(new game.Rectangle(60, 60));
+            this.body.addShape(new game.Rectangle(40, 41));
 
             game.scene.addObject(this);
             game.scene.world.addBody(this.body);
