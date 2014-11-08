@@ -4,8 +4,9 @@ game.module(
 .body(function() {
 
 
-    game.addAsset('juhani.jpg');
+    game.addAsset('boy.png');
     game.addAsset('back.png');
+    game.addAsset('images/road.png', 'road');
 
 // game.addAsset('sprite.png');
 // game.addAudio('audio/music.m4a', 'music');

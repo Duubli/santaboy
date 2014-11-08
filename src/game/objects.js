@@ -3,41 +3,50 @@ game.module(
 )
 .body(function() {
 
-    game.createClass('Boy', 'Sprite', {
+    game.createClass('Road', 'Sprite', {
 
-        init: function(x, y) {
+        init: function (x, y) {
 
-            this._super('juhani.jpg', x, y, {
-                anchor: {
-                    x: 0.5,
-                    y: 0.5
-                }
-            });
+            this.startX = x;
+            this.startY = y;
+
+            this._super('road', x, y);
 
             this.body = new game.Body({
-                position: { x: 0, y: 0 },
+                position: { x: x, y: y }
             });
 
-            this.body.addShape(new game.Rectangle(60, 60));
+            this.body.addShape(new game.Rectangle(633, 115));
 
-            // add sprite to scene
             game.scene.addObject(this);
-
-            // add body of this sprite to the world object
             game.scene.world.addBody(this.body);
-
-            // add sprite to display container
             game.scene.stage.addChild(this);
 
-        }
-    });
+            this.body.velocity.y = 100;
+            this.body.velocity.x = -100;
 
-    game.createClass('Background', 'Sprite', {
 
-        init: function () {
 
-            this._super('back.png', 0, 0);
-            game.scene.stage.addChild(this);
+        },
+
+        update: function () {
+            this.position.x = this.body.position.x;
+            this.position.y = this.body.position.y;
+
+            if (this.position.y > this.startY + 115) {
+                this.position.y = this.startY;
+                this.position.x = this.startX;
+                this.body.position.y = this.startY;
+                this.body.position.x = this.startX;
+            }
+
+            if (game.scene.boy.position.x > 700) {
+                this.body.velocity.y = 50;
+                this.body.velocity.x = -50;
+            } else {
+                this.body.velocity.y = 100;
+                this.body.velocity.x = -100;
+            }
 
         }
 
