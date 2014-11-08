@@ -111,6 +111,7 @@ game.createScene('Main', {
                 if (this.gifts[i].prepared === true) {
                     this.gifts[i].shoot();
                     this.boy.toggleWindup();
+                    game.audio.playSound('uh');
                     break;
                 }
             }
@@ -144,7 +145,7 @@ game.createScene('Main', {
                 }
             }
         }
-        
+
     },
 
     depthCompare: function (a, b) {
