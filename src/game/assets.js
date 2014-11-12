@@ -15,6 +15,6 @@ game.module(
     game.addAsset('images/gift-red.png', 'gift-red');
     game.addAsset('images/gift.png', 'gift-green');
 
-    game.addAudio('audio/uh.mp3', 'uh');
+    // game.addAudio('audio/uh.mp3', 'uh');
 
 });

@@ -49,6 +49,49 @@ game.createScene('Main', {
 
     },
 
+    update3: function () {
+
+    },
+
+    update2: function () {
+
+        if (game.accelerometer) {
+
+            var xValue = game.accelerometer.x;
+
+            if (xValue > 0) {
+                this.boy.moveRight();
+                this.rekiFront.moveRight();
+                this.rekiBack.moveRight();
+
+                for (var i = 0; i < this.gifts.length; i++) {
+                    this.gifts[i].moveRight();
+                }
+            }
+            else if (xValue < 0) {
+                this.boy.moveLeft();
+                this.rekiFront.moveLeft();
+                this.rekiBack.moveLeft();
+
+                for (var i = 0; i < this.gifts.length; i++) {
+                    this.gifts[i].moveLeft();
+                }
+            }
+            else {
+                this.boy.stop();
+                this.rekiFront.stop();
+                this.rekiBack.stop();
+
+                for (var i = 0; i < this.gifts.length; i++) {
+                    this.gifts[i].stop();
+                }
+            }
+
+            // console.log(game.accelerometer.x);
+        }
+
+    },
+
 
     keydown: function (key) {
 

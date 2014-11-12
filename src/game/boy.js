@@ -14,7 +14,8 @@ game.module(
             });
 
             this.body = new game.Body({
-                position: { x: x, y: y }
+                position: { x: x, y: y },
+                velocityLimit: { x: 300, y: 0 }
             });
             this.body.addShape(new game.Rectangle(160, 166));
 
@@ -26,6 +27,19 @@ game.module(
         update: function () {
             this.position.x = this.body.position.x;
             this.position.y = this.body.position.y;
+
+            if (game.accelerometer) {
+                var x = game.accelerometer.x;
+                this.body.velocity.x = 150*x;
+
+                if (x > 0) {
+                    this.rotation = 0.05;
+                } else if (x < 0) {
+                    this.rotation = -0.05;
+                } else {
+                    this.rotation = 0;
+                }
+            }
         },
 
         moveRight: function () {
@@ -70,6 +84,19 @@ game.module(
         update: function () {
             this.position.x = this.body.position.x;
             this.position.y = this.body.position.y;
+
+            if (game.accelerometer) {
+                var x = game.accelerometer.x;
+                this.body.velocity.x = 150*x;
+
+                if (x > 0) {
+                    this.rotation = 0.05;
+                } else if (x < 0) {
+                    this.rotation = -0.05;
+                } else {
+                    this.rotation = 0;
+                }
+            }
         },
 
         moveRight: function () {
@@ -122,6 +149,20 @@ game.module(
         update: function () {
             this.position.x = this.body.position.x;
             this.position.y = this.body.position.y;
+
+            if (game.accelerometer) {
+                var x = game.accelerometer.x;
+                this.body.velocity.x = 150*x;
+
+                if (x > 0) {
+                    this.rotation = 0.05;
+                } else if (x < 0) {
+                    this.rotation = -0.05;
+                } else {
+                    this.rotation = 0;
+                }
+
+            }
         },
 
         moveRight: function () {
