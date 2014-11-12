@@ -5,7 +5,8 @@ pandaConfig = {
     system: {
         width: 1280,
         height: 720,
-        scaleToFit: true
+        scaleToFit: true,
+        webGL: true
     },
     storage: {
         id: 'net.pandajs.santaboy'
