@@ -40,12 +40,12 @@ game.module(
             this.position.y = this.body.position.y;
 
             if (game.accelerometer && this.used === false) {
-                var x = game.accelerometer.x;
-                this.body.velocity.x = 150*x;
+                var val = game.accelerometer.y;
+                this.body.velocity.x = 150*val;
 
-                if (x > 0) {
+                if (val > 0) {
                     this.rotation = 0.05;
-                } else if (x < 0) {
+                } else if (val < 0) {
                     this.rotation = -0.05;
                 } else {
                     this.rotation = 0;
