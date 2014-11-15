@@ -81,13 +81,17 @@ game.module(
 
         },
 
-        shoot: function () {
+        shoot: function (speed) {
+
+            if (speed < 0.6) {
+                speed = 0.6;
+            }
+
             this.used = true;
             this.prepared = false;
             this.body.position.x -= 100;
-            this.body.velocity.x = -800;
+            this.body.velocity.x = -800*speed;
             this.body.velocity.y = -20;
-
         }
 
     });

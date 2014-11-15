@@ -28,6 +28,7 @@ game.module(
             this.position.x = this.body.position.x;
             this.position.y = this.body.position.y;
 
+
             if (game.accelerometer) {
                 var val = game.accelerometer.y;
                 this.body.velocity.x = 150*val;
@@ -40,6 +41,7 @@ game.module(
                     this.rotation = 0;
                 }
             }
+
         },
 
         moveRight: function () {
@@ -85,6 +87,7 @@ game.module(
             this.position.x = this.body.position.x;
             this.position.y = this.body.position.y;
 
+
             if (game.accelerometer) {
                 var val = game.accelerometer.y;
                 this.body.velocity.x = 150*val;
@@ -97,6 +100,7 @@ game.module(
                     this.rotation = 0;
                 }
             }
+
         },
 
         moveRight: function () {
@@ -150,6 +154,7 @@ game.module(
             this.position.x = this.body.position.x;
             this.position.y = this.body.position.y;
 
+
             if (game.accelerometer) {
                 var val = game.accelerometer.y;
                 this.body.velocity.x = 150*val;
@@ -162,6 +167,7 @@ game.module(
                     this.rotation = 0;
                 }
             }
+            
         },
 
         moveRight: function () {

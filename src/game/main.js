@@ -15,6 +15,12 @@ game.createScene('Main', {
 
     init: function() {
 
+
+        this.throwSpeed = 0;
+        this.touchStart = 0;
+        this.mouseDown = false;
+
+
         this.world = new game.World(0, 0);
 
         // Create the road
@@ -42,53 +48,6 @@ game.createScene('Main', {
         }
 
         this.rekiBack = new game.RekiBack(200, 600);
-
-
-
-
-
-    },
-
-    update3: function () {
-
-    },
-
-    update2: function () {
-
-        if (game.accelerometer) {
-
-            var xValue = game.accelerometer.x;
-
-            if (xValue > 0) {
-                this.boy.moveRight();
-                this.rekiFront.moveRight();
-                this.rekiBack.moveRight();
-
-                for (var i = 0; i < this.gifts.length; i++) {
-                    this.gifts[i].moveRight();
-                }
-            }
-            else if (xValue < 0) {
-                this.boy.moveLeft();
-                this.rekiFront.moveLeft();
-                this.rekiBack.moveLeft();
-
-                for (var i = 0; i < this.gifts.length; i++) {
-                    this.gifts[i].moveLeft();
-                }
-            }
-            else {
-                this.boy.stop();
-                this.rekiFront.stop();
-                this.rekiBack.stop();
-
-                for (var i = 0; i < this.gifts.length; i++) {
-                    this.gifts[i].stop();
-                }
-            }
-
-            // console.log(game.accelerometer.x);
-        }
 
     },
 
@@ -190,6 +149,49 @@ game.createScene('Main', {
         }
 
     },
+
+
+    mousedown: function (touch) {
+
+        if (this.mouseDown === false) {
+            this.mouseDown = true;
+            this.throwSpeed = 0;
+            this.touchStart = touch.originalEvent.x;
+        }
+
+
+    },
+
+    mouseup: function (touch) {
+
+        this.mouseDown = false;
+
+    },
+
+    mousemove: function (touch) {
+
+        if (this.mouseDown === true) {
+
+            var newSpeed = touch.originalEvent.x - this.touchStart;
+            if (newSpeed > this.throwSpeed && newSpeed <= 500) {
+                this.throwSpeed = newSpeed;
+            }
+
+            if (touch.originalEvent.x < this.touchStart) {
+                for (var i = 0; i < this.gifts.length; i++) {
+                    if (this.gifts[i].prepared === true) {
+                        this.gifts[i].shoot(this.throwSpeed/500);
+                        this.boy.toggleWindup();
+                        break;
+                    }
+                }
+            }
+
+        }
+
+    },
+
+
 
     depthCompare: function (a, b) {
         if (a.zIndex < b.zIndex) return -1;
